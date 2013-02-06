@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <title>SimpleMemory</title>
+<link rel="stylesheet" href="css/mainstyle.css" />
+<link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.mobile-1.2.0.js"></script>
+<script src="js/webworks-1.0.4.5.js"></script>
+<script src="js/Leaderboard.js"></script>
+<script type="text/javascript" src="js/simpleMemory.js"></script>
+<script type="text/javascript" src="js/GameController.js"> </script> 
+</head>
+<body>
+    <div data-role="page" id="index" data-theme="b">
+        <div data-role="header" data-theme="c">
+        <h1>SimpleMemory</h1>
+        </div>
+
+    <div data-role="content">
+        <br />
+    <ul data-role="listview" data-split-icon="gear" data-split-theme="a">
+    <li><a href="#game"><h3>New Game</h3>
+        <p>Start a new Game</p>
+        </a>
+    </li>
+         <li>
+        <a href="#" id="restoreGame">
+        <h3>Restore Game</h3>
+            <p>Continue where you left off.</p>
+        </a>
+        </li>
+        <li>
+        <a href="#instructions">
+        <h3>Leaderboard</h3>
+            <p>See your progress.</p>
+        </a>
+        </li>
+        <li>
+        <a href="#instructions">
+        <h3>Instructions</h3>
+            <p>Learn how to play the game</p>
+        </a>
+        </li>
+    <li>
+        <a href="#about">
+        <h3>About</h3>
+            <p>Find out more about the game and it's developer</p>
+        </a>
+    </li>
+         <li>
+        <a href="#exitdialog" data-rel="dialog" id="exitGame">
+        <h3>Exit</h3>
+            <p>Take some time off.</p>
+        </a>
+        </li>
+    </ul>
+    </div>
+    <div data-role="footer" data-theme="c" data-position="fixed">
+       <h1>Developed by Khulekani Ngongoma.<br />
+         
+       </h1>
+    </div>
+    </div><!-- end of #index page-->
+
+    <div data-role="page" id="game" data-theme="c" id="main">
+    <header data-role="header" data-position="fixed" data-theme="c">
+    <h1>SimpleMemory</h1>
+        </header>
+    <div data-role="content">
+<table style="padding-left: 100px;" align="center">
+ 
+    <tr><td><a href="#"  data-role="button" id="btnStart" onclick="startGame()">Start Game</a></td><td><a  href="#" data-role="button" class="ui-state=disabled" id="btnPause" onclick="pauseGame()">Pause </a></td></tr>
+    </table>
+ <table align="center" id="road" border="1">
+<tr ><td id="10"> Empty</td><td id="20">Empty </td><td id="30"> Empty</td><td id="40"> Empty</td><td id="50"> Empty</td></tr>
+<tr><td id="11">Empty </td><td id="21">Empty </td><td id="31"> Empty</td><td id="41"> Empty</td><td id="51"> Empty</td></tr>
+<tr><td id="12"> Empty</td><td id="22">Empty </td><td id="32">Empty </td><td id="42"> Empty</td><td id="52"> Empty</td></tr>
+<tr><td id="13"> Empty</td><td id="23">Empty </td><td id="33">Empty </td><td id="43"> Empty</td><td id="53"> Empty</td></tr>
+<tr><td id="14"> Empty</td><td id="24">Empty </td><td id="34">Empty </td><td id="44"> Empty</td><td id="54"> Empty</td></tr>
+<tr><td id="15"> Empty</td><td id="25">Empty </td><td id="35">Empty </td><td id="45"> Empty</td><td id="55"> Empty</td></tr>
+</table>
+<div id="timer">Time: </div>
+<div id="err" style="color:red"> </div>
+        <script>
+        var clickEvent = $.Event("click");
+        $("#road td").tap(function () {
+           
+            $(this).trigger(clickEvent);
+        });
+        </script>
+        </div>
+    <footer data-role="footer" data-position="fixed" data-theme="c"><div class="ui-grid-a"><div class="ui-block-a"><a href="#index" data-role="button">Back</a></div><div class="ui-block-b">High Score:<span id="score"></span></div></div></footer>
+        </div><!-- end of #game page -->
+
+    <div data-role="page" id="leaderboard" data-theme="c">
+    <div data-role="header" data-theme="c">
+    <h1>SimpleMemory</h1>
+    </div>
+        <div data-role="content" data-theme="c">
+            <div id="leaderboard">
+            
+            
+            </div>
+        </div>
+        <div data-role="footer" data-theme="c" data-position="fixed">
+        <a href="#index" style="width: 300px" data-role="button">Back</a>
+        </div> 
+    </div><!-- end of page #leaderboard -->
+
+    <div data-role="page" id="instructions" data-theme="c">
+    <div data-role="header" data-theme="c">
+    <h1>SimpleMemory</h1>
+    </div>
+        <div data-role="content">
+        <p>Your objective on SimpleMemory is to reveal two identical images one after another, in the shortest amount of time, until you have revealed all images.
+            Images will be re-hidden as you take time to finish the game. So the faster you become, the better are your chances to beat your current high score, and better your memory.  </p>
+            <p>You start with 100 points which increases with every second you spend playing the game. The leader of the game will be the person who loss the least amount of points, hence took the shortest amount of time to finish the game.</p>
+        </div>
+        <div data-role="footer" data-theme="c" data-position="fixed">
+        <a href="#index" style="width: 300px" data-role="button">Back</a>
+        </div> 
+    </div> <!-- end of page #instructions -->
+
+    <div data-role="page" id="about" data-theme="c">
+    <div data-role="header" data-theme="c">
+    <h1>SimpleMemory</h1>
+    </div>
+        <div data-role="content">
+            <center>
+        <p>Name: SimpleMemory</p>
+        <p>Version: 1.0</p>
+        <p>Developer: Khulekani Ngongoma</p>
+        <p>Support: khulekanik@live.com</p>
+                </center>
+        </div>
+        <div data-role="footer" data-theme="c" data-position="fixed">
+        <a href="#index" style="width: 300px" data-role="button">Back</a>
+        </div> 
+    </div> <!-- end of page #about -->
+    
+
+    <div data-role="page" id="exitdialog" data-theme="b">
+            <div data-role="header" data-theme="b">
+       <h3>Exit</h3>
+        </div>
+        <div data-role="content" data-theme="b">
+
+        <p>Are you sure?</p>
+            <div class="ui-grid-a">
+            <div class="ui-block-a"><a href="index.html" id="exitNo" data-role="button">No</a></div>
+            <div class="ui-block-b"><a href="#" id="exitYes" data-role="button" onclick="exit()">Yes</a></a></div>
+          </div>
+                <div data-role="footer" data-theme="b"></div>
+            </div>
+      <script>
+          $("#exitYes").tap(function () {
+              exit();
+
+          });
+          function exit() {
+              blackberry.app.exit();
+          }
+      </script>
+      <div data-role="footer">
+        
+          </div> 
+        </div> <!-- end of exitdialog page -->
+
+    <div data-role="page" id="highscoredialog" data-theme="b">
+    <div data-role="header">
+    <h3>Congratulations!</h3>
+    </div>
+        <div data-role="content">
+            <p>You are about to be included in the Leaderboard. Please enter your name.</p>
+        <fieldset>
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" id="name" />
+            <a href="#" data-role="button" id="saveHighScore" onclick="saveScore()">Save</a>
+        </fieldset>
+        </div>
+        <script>
+            $("#saveHighScore").tap(function(){
+               saveScore();
+            });
+            function saveScore(){
+            var objLeaderboard = new Leaderboard();
+            objLearderboard.init();
+            objLeaderboard.SetHighScore($("#name").val());
+            }
+        </script>
+        <div data-role="footer">
+        
+        </div>   
+    </div>
+        
+
+<script type="text/javascript">
+
+$(document)
+    $.mobile.allowCrossDomainPages = true;
+    $("#btnPause .ui-btn-inner .ui-btn-text").html("");
+
+    if (localStorage["highScore"]) {
+            $("#highScore").html(localStorage["highScore"]);
+
+        }
+        else
+        {
+            localStorage['highScore'] = 0;
+            $("#highScore").html(localStorage["highScore"]);
+        }
+
+
+    function startGame() {
+
+        if (!simple.inProgress) {
+
+            // starts the game and set the flag inProgress to true so clicking any of the td will reveal a picture
+            gameC.startGame();
+
+            simple.inProgress = true;
+            $("#btnPause .ui-btn-inner .ui-btn-text").html("Pause");
+            $("#btnStart .ui-btn-inner .ui-btn-text").html("");
+            
+        }
+    }
+    function pauseGame() {
+        if (simple.inProgress) {
+            gameC.pause();
+            simple.inProgress = false;
+            $("#btnPause .ui-btn-inner .ui-btn-text").html("");
+            $("#btnStart .ui-btn-inner .ui-btn-text").html("Resume");
+        }
+    }
+    function restartGame() {
+        gameC.refresher();
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+#road {width:150px;height:120px;}
+#road td, img
+{
+    height: 70px;
+}
+
+button {width:50px;height:50px;}
+div {text-align:center;}
+#btnX, #btnO,#btnPause, #btnStart {width:80px;height:50px;color:red}
+body{background-color:silver;}
+td {width:25%;height:25%;}
+#btnStart,#btnPause{
+    width: 200px;
+    color: #000;
+}
